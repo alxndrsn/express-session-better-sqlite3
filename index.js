@@ -11,7 +11,9 @@ module.exports = db => {
   const _length  = db.prepare('SELECT COUNT(*) FROM express_session');
   const _clear   = db.prepare('DELETE FROM express_session');
 
-  return { get, set, length, clear, destroy };
+  return { get, set, length, clear, destroy, on };
+
+  function on(event) { console.log(`[express-session-better-sqlite3] on() NOT YET IMPLEMENTED FOR EVENT '${event}'`); };
 
   function get(id, callback) {
     try {
