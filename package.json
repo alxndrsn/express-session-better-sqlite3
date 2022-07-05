@@ -1,5 +1,6 @@
 {
   "name": "connect-sqlite3",
+  "packageManager": "yarn@3.2.1",
   "description": "SQLite3 session store for Connect",
   "version": "0.9.13",
   "author": "David Feinberg",
@@ -7,14 +8,15 @@
   "scripts": {
     "test": "mocha test/test.js"
   },
-  "dependencies": {
-    "sqlite3": "^5.0.2"
+  "peerDependencies": {
+    "sqlite3": "*"
   },
   "devDependencies": {
     "connect": ">=1.0.0",
     "express-session": "^1.13.0",
     "mocha": "^2.3.4",
-    "should": "^8.2.0"
+    "should": "^8.2.0",
+    "sqlite3": "^5.0.8"
   },
   "engines": {
     "node": ">=0.4.x"
