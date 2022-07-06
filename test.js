@@ -26,6 +26,7 @@ describe('express-session-better-sqlite3', function() {
   it('should save a new session record', done => {
     store.set('1111222233334444', { cookie:{ maxAge:2000 }, name:'sample name' }, err => {
       if(err) return done(err);
+
       done();
     });
   });
@@ -33,8 +34,10 @@ describe('express-session-better-sqlite3', function() {
 
   it('should retrieve an active session', done => {
     store.get('1111222233334444', (err, session) => {
-      assert.isNull(err);
+      if(err) return done(err);
+
       assert.deepEqual(session, { cookie:{ maxAge:2000 }, name:'sample name' });
+
       done();
     });
   });
@@ -42,6 +45,7 @@ describe('express-session-better-sqlite3', function() {
   it('should gracefully handle retrieving an unkonwn session', done => {
     store.get('hope-and-change', err => {
       if(err) return done(err);
+
       done();
     });
   });
@@ -51,6 +55,7 @@ describe('express-session-better-sqlite3', function() {
       if(err) return done(err);
 
       assert.equal(len, 1);
+
       done();
     });
   });
@@ -84,6 +89,7 @@ describe('express-session-better-sqlite3', function() {
         if(err) return done(err);
 
         assert.equal(len, 0);
+
         done();
       });
     });
@@ -98,7 +104,9 @@ describe('express-session-better-sqlite3', function() {
 
         store.length(function(err, len) {
           if(err) return done(err);
+
           assert.equal(len, 0);
+
           done();
         });
       });
