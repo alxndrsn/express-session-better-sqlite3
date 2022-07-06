@@ -11,11 +11,17 @@ const implementation = require('.');
 
 /* compatible with old constructor used in these tests */
 function getStore({ db }) {
-  return implementation(expressSession, betterSqlite3(db, { verbose:process.env.DEBUG_SQLITE && console.error }));
+  const Store = implementation(expressSession, betterSqlite3(db, { verbose:process.env.DEBUG_SQLITE && console.error }));
+  return new Store();
 }
 
 describe('express-session-better-sqlite3', function() {
   const store = getStore({ db:':memory:' });
+
+  it('should implement createSession()', () => {
+    // expect
+    assert.isFunction(store.createSession);
+  });
 
   it('should save a new session record', done => {
     store.set('1111222233334444', { cookie:{ maxAge:2000 }, name:'sample name' }, (err, rows) => {

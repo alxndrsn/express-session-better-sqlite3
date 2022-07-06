@@ -2,7 +2,7 @@
 
 const bourne = require('@hapi/bourne');
 
-module.exports = db => {
+module.exports = (expressSession, db) => {
   db.exec('CREATE TABLE IF NOT EXISTS express_session (id TEXT PRIMARY KEY, data TEXT)');
 
   const _get     = db.prepare('SELECT data FROM express_session WHERE id=?');
@@ -11,53 +11,53 @@ module.exports = db => {
   const _length  = db.prepare('SELECT COUNT(*) FROM express_session');
   const _clear   = db.prepare('DELETE FROM express_session');
 
-  return { get, set, length, clear, destroy, on };
+  class BetterSqlite3SessionStore extends expressSession.Store {
+    get(id, callback) {
+      try {
+        const res = _get.get(id);
+        if(res) callback(null, bourne.parse(res.data));
+        else callback();
+      } catch(err) {
+        callback(err);
+      }
+    }
 
-  function on(event) { console.log(`[express-session-better-sqlite3] on() NOT YET IMPLEMENTED FOR EVENT '${event}'`); };
+    set(id, data, callback) {
+      try {
+        _set.run(id, JSON.stringify(data));
+        callback(null, []);
+      } catch(err) {
+        callback(err);
+      }
+    }
 
-  function get(id, callback) {
-    try {
-      const res = _get.get(id);
-      if(res) callback(null, bourne.parse(res.data));
-      else callback();
-    } catch(err) {
-      callback(err);
+    length(callback) {
+      try {
+        const res = _length.get()['COUNT(*)'];
+        callback(null, res);
+      } catch(err) {
+        callback(err);
+      }
+    }
+
+    clear(callback) {
+      try {
+        _clear.run();
+        callback();
+      } catch(err) {
+        callback(err);
+      }
+    }
+
+    destroy(id, callback) {
+      try {
+        _destroy.run(id);
+        callback();
+      } catch(err) {
+        callback(err);
+      }
     }
   }
 
-  function set(id, data, callback) {
-    try {
-      _set.run(id, JSON.stringify(data));
-      callback(null, []);
-    } catch(err) {
-      callback(err);
-    }
-  }
-
-  function length(callback) {
-    try {
-      const res = _length.get()['COUNT(*)'];
-      callback(null, res);
-    } catch(err) {
-      callback(err);
-    }
-  }
-
-  function clear(callback) {
-    try {
-      _clear.run();
-      callback();
-    } catch(err) {
-      callback(err);
-    }
-  }
-
-  function destroy(id, callback) {
-    try {
-      _destroy.run(id);
-      callback();
-    } catch(err) {
-      callback(err);
-    }
-  }
+  return BetterSqlite3SessionStore;
 };
