@@ -1,6 +1,6 @@
 // see: https://github.com/expressjs/session#session-store-implementation
 
-const bourne = JSON; // TODO replace with @hapi/bourne
+const bourne = require('@hapi/bourne');
 
 module.exports = db => {
   db.exec('CREATE TABLE IF NOT EXISTS express_session (id TEXT PRIMARY KEY, data TEXT)');
