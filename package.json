@@ -2,7 +2,7 @@
   "name": "express-session-better-sqlite3",
   "packageManager": "yarn@3.2.1",
   "description": "SQLite session store for ExpressJS session middleware / express-session using better-sqlite3",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "alxndrsn",
   "main": "index.js",
   "scripts": {
