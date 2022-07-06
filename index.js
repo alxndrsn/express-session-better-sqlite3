@@ -26,7 +26,7 @@ module.exports = (expressSession, db) => {
       try {
         const strData = JSON.stringify(data);
         _set.run(id, strData, strData);
-        callback(null, []);
+        callback();
       } catch(err) {
         callback(err);
       }

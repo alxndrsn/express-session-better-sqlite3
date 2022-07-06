@@ -24,9 +24,8 @@ describe('express-session-better-sqlite3', function() {
   });
 
   it('should save a new session record', done => {
-    store.set('1111222233334444', { cookie:{ maxAge:2000 }, name:'sample name' }, (err, rows) => {
+    store.set('1111222233334444', { cookie:{ maxAge:2000 }, name:'sample name' }, err => {
       if(err) return done(err);
-      assert.isEmpty(rows);
       done();
     });
   });
@@ -41,10 +40,8 @@ describe('express-session-better-sqlite3', function() {
   });
 
   it('should gracefully handle retrieving an unkonwn session', done => {
-    store.get('hope-and-change', (err, rows) => {
+    store.get('hope-and-change', err => {
       if(err) return done(err);
-
-      assert.isUndefined(rows);
       done();
     });
   });
@@ -93,10 +90,8 @@ describe('express-session-better-sqlite3', function() {
   });
 
   it('should destroy a session', function(done) {
-    store.set('555666777', { cookie:{ maxAge:1000 }, name:'Rob Dobilina' }, (err, rows) => {
+    store.set('555666777', { cookie:{ maxAge:1000 }, name:'Rob Dobilina' }, err => {
       if(err) return done(err);
-
-      assert.isEmpty(rows);
 
       store.destroy('555666777', function(err) {
         if(err) return done(err);
