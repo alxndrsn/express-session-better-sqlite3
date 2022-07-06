@@ -6,7 +6,7 @@ module.exports = (expressSession, db) => {
   db.exec('CREATE TABLE IF NOT EXISTS express_session (id TEXT PRIMARY KEY, data TEXT)');
 
   const _get     = db.prepare('SELECT data FROM express_session WHERE id=?');
-  const _set     = db.prepare('INSERT INTO express_session (id, data) VALUES (?, ?)');
+  const _set     = db.prepare('INSERT INTO express_session (id, data) VALUES (?, ?) ON CONFLICT(id) DO UPDATE SET data=?');
   const _destroy = db.prepare('DELETE FROM express_session WHERE id=?');
   const _length  = db.prepare('SELECT COUNT(*) FROM express_session');
   const _clear   = db.prepare('DELETE FROM express_session');
@@ -24,7 +24,8 @@ module.exports = (expressSession, db) => {
 
     set(id, data, callback) {
       try {
-        _set.run(id, JSON.stringify(data));
+        const strData = JSON.stringify(data);
+        _set.run(id, strData, strData);
         callback(null, []);
       } catch(err) {
         callback(err);
