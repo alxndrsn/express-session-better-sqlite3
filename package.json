@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@hapi/bourne": "^3.0.0",
-    "better-sqlite3": "^7.5.3",
+    "better-sqlite3": "^8.4.0",
     "chai": "^4.3.6",
     "express-session": "^1.17.3",
     "mocha": "^10.0.0"

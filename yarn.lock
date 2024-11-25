@@ -168,14 +168,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"better-sqlite3@npm:^7.5.3":
-  version: 7.5.3
-  resolution: "better-sqlite3@npm:7.5.3"
+"better-sqlite3@npm:^8.4.0":
+  version: 8.7.0
+  resolution: "better-sqlite3@npm:8.7.0"
   dependencies:
     bindings: ^1.5.0
     node-gyp: latest
-    prebuild-install: ^7.1.0
-  checksum: 41ad8ea0698c627ff7391e8b9cfe0f684d214a80ec4557775f04b795a8bf92f5b0e6d668d46f6cddfacfaf274793a6ded28f03e505e7fc2d6554cc1170e24ce4
+    prebuild-install: ^7.1.1
+  checksum: f1fa38a9a0e4fcd59ececb67c60371b9638d29c19ce9af034421e8a56c9a77e799bb1411b1c3cb08bb9678e15dfb8985553a9ef4098cf5558e7207a3e019f211
   languageName: node
   linkType: hard
 
@@ -573,7 +573,7 @@ __metadata:
   resolution: "express-session-better-sqlite3@workspace:."
   dependencies:
     "@hapi/bourne": ^3.0.0
-    better-sqlite3: ^7.5.3
+    better-sqlite3: ^8.4.0
     chai: ^4.3.6
     express-session: ^1.17.3
     mocha: ^10.0.0
@@ -1385,9 +1385,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prebuild-install@npm:^7.1.0":
-  version: 7.1.1
-  resolution: "prebuild-install@npm:7.1.1"
+"prebuild-install@npm:^7.1.1":
+  version: 7.1.2
+  resolution: "prebuild-install@npm:7.1.2"
   dependencies:
     detect-libc: ^2.0.0
     expand-template: ^2.0.3
@@ -1403,7 +1403,7 @@ __metadata:
     tunnel-agent: ^0.6.0
   bin:
     prebuild-install: bin.js
-  checksum: dbf96d0146b6b5827fc8f67f72074d2e19c69628b9a7a0a17d0fad1bf37e9f06922896972e074197fc00a52eae912993e6ef5a0d471652f561df5cb516f3f467
+  checksum: 543dadf8c60e004ae9529e6013ca0cbeac8ef38b5f5ba5518cb0b622fe7f8758b34e4b5cb1a791db3cdc9d2281766302df6088bd1a225f206925d6fee17d6c5c
   languageName: node
   linkType: hard
 
