@@ -62,18 +62,18 @@ describe('express-session-better-sqlite3', function() {
 
   // see: https://github.com/expressjs/session#storesetsid-session-callback
   it('should support upserting a session', done => {
-    store.get('1111222233334444', (err, session) => {
+    store.get('1111222233334444', (err, s1) => {
       if(err) return done(err);
 
-      assert.equal(session.name, 'sample name');
+      assert.equal(s1.name, 'sample name');
 
       store.set('1111222233334444', { cookie:{ maxAge:2000 }, name:'sample name changed' }, err => {
         if(err) return done(err);
 
-        store.get('1111222233334444', (err, session) => {
+        store.get('1111222233334444', (err, s2) => {
           if(err) return done(err);
 
-          assert.equal(session.name, 'sample name changed');
+          assert.equal(s2.name, 'sample name changed');
 
           done();
         });

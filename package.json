@@ -6,7 +6,9 @@
   "author": "alxndrsn",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test.js"
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint .",
+    "test:mocha": "mocha test.js",
+    "test": "yarn lint && yarn test:mocha"
   },
   "peerDependencies": {
     "@hapi/bourne": "*",
@@ -16,6 +18,7 @@
     "@hapi/bourne": "^3.0.0",
     "better-sqlite3": "^8.4.0",
     "chai": "^4.3.6",
+    "eslint": "^9.15.0",
     "express-session": "^1.17.3",
     "mocha": "^10.0.0"
   },
