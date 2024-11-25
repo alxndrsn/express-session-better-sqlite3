@@ -6,9 +6,9 @@
   "author": "alxndrsn",
   "main": "index.js",
   "scripts": {
-     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint .",
-     "test:mocha": "mocha test.js",
-     "test": "yarn lint && yarn test:mocha"
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint .",
+    "test:mocha": "mocha test.js",
+    "test": "yarn lint && yarn test:mocha"
   },
   "peerDependencies": {
     "@hapi/bourne": "*",
