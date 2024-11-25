@@ -23,7 +23,7 @@ describe('express-session-better-sqlite3', function() {
     assert.isFunction(store.createSession);
   });
 
-  it('store should be empty initially', done => {
+  it('set() should save a new session record', done => {
     store.set('1111222233334444', { cookie:{ maxAge:2000 }, name:'sample name' }, err => {
       if(err) return done(err);
 
